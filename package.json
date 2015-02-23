@@ -1,0 +1,33 @@
+{
+  "name": "angular-svg-radial",
+  "version": "0.1.0",
+  "description": "Angular directive that produces an SVG radial based on a percentage.",
+  "keywords": [
+    "angular",
+    "radial",
+    "progress",
+    "svg"
+  ],
+  "authors": [
+    {
+      "name": "Brian Crucitti",
+      "email": "brian.crucitti@vokal.io"
+    },
+    {
+      "name": "Devon Maloney",
+      "email": "devon.maloney@vokal.io"
+    }
+  ],
+  "homepage": "https://github.com/vokal/angular-svg-radial",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vokal/angular-svg-radial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vokal/angular-svg-radial/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
