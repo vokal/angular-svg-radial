@@ -1,8 +1,13 @@
-"use strict";
-
+/**
+ * @license angular-svg-radial v0.1.0
+ * (c) 2015 Vokal https://github.com/vokal/angular-svg-radial
+ * License: MIT
+ */
 angular.module( "svgRadial", [] )
     .directive( "radialProgress", function ()
     {
+        "use strict";
+
         return {
             restrict: "E",
             transclude: true,
@@ -14,7 +19,7 @@ angular.module( "svgRadial", [] )
                                 '<div class="piece"></div>' +
                             '</div>' +
                             '<div class="transclude" ng-transclude></div>' +
-                        '</div',
+                        '</div>',
             link: function ( scope, element, attrs )
             {
                 var setRotation = function ( selector, numVal )

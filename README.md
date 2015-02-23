@@ -16,6 +16,7 @@ _v1_
 - animate fluidly on mobile devices default browsers
 - provide attributes for toggling settings
 - vertically centered content using `transclude`
+- remove jQuery dependency
 - support for IE9+
 
 _v1.x_

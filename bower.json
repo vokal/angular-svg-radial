@@ -10,8 +10,14 @@
     "svg"
   ],
   "authors": [
-    { "name": "Brian Crucitti", "email": "brian.crucitti@vokal.io" },
-    { "name": "Devon Maloney", "email": "devon.maloney@vokal.io" }
+    {
+      "name": "Brian Crucitti",
+      "email": "brian.crucitti@vokal.io"
+    },
+    {
+      "name": "Devon Maloney",
+      "email": "devon.maloney@vokal.io"
+    }
   ],
   "homepage": "https://github.com/vokal/angular-svg-radial",
   "ignore": [
@@ -21,6 +27,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "angular": "1.3.x"
+    "angular": "1.3.x",
+    "jquery": "~2.1.3"
   }
 }
