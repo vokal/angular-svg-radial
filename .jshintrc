@@ -1,0 +1,42 @@
+{
+    "bitwise"       : true,
+    "camelcase"     : true,
+    "curly"         : true,
+    "eqeqeq"        : true,
+    "forin"         : true,
+    "immed"         : false,
+    "indent"        : 4,
+    "latedef"       : true,
+    "newcap"        : true,
+    "noarg"         : true,
+    "noempty"       : true,
+    "plusplus"      : false,
+    "quotmark"      : "double",
+    "undef"         : true,
+    "unused"        : true,
+    "strict"        : true,
+    "maxlen"        : 120,
+
+    "asi"           : false,
+    "boss"          : false,
+    "eqnull"        : false,
+    "evil"          : false,
+    "expr"          : false,
+    "funcscope"     : false,
+    "globalstrict"  : true,
+    "laxbreak"      : true,
+    "loopfunc"      : false,
+    "multistr"      : false,
+    "shadow"        : false,
+    "sub"           : false,
+    "validthis"     : true,
+
+    "browser"       : true,
+    "devel"         : true,
+    "jquery"        : true,
+    "node"          : true,
+
+    "globals"       : {
+        "angular": false
+    }     
+}
