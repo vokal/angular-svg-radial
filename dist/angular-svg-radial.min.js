@@ -1,5 +1,5 @@
 /*!
- * angular-svg-radial 0.1.0
+ * angular-svg-radial 0.1.1
  * (c) 2015 Vokal LLC
  * https://github.com/vokal/angular-svg-radial
  */
