@@ -1,5 +1,5 @@
 /**
- * @license angular-svg-radial v0.1.0
+ * @license angular-svg-radial v0.1.1
  * (c) 2015 Vokal LLC https://github.com/vokal/angular-svg-radial
  * License: MIT
  */
@@ -12,6 +12,9 @@ angular.module( "svgRadial", [] )
             restrict: "E",
             transclude: true,
             replace: true,
+            // ignore double quotes HTML block for jshint
+            // to prevent unnecessary escaping
+            // jshint quotmark: false
             template:   '<div class="radial-progress">' +
                             '<div class="base"></div>' +
                             '<div class="radial">' +
@@ -20,6 +23,7 @@ angular.module( "svgRadial", [] )
                             '</div>' +
                             '<div class="transclude" ng-transclude></div>' +
                         '</div>',
+            // jshint quotmark: double
             link: function ( scope, element, attrs )
             {
                 var setRotation = function ( selector, numVal )
