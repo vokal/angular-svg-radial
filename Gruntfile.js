@@ -16,7 +16,7 @@ module.exports = function( grunt )
             },
             all:
             {
-                src: [ "svg-radial.js", "Gruntfile.js" ]
+                src: [ "source/*.js", "Gruntfile.js" ]
             }
         },
 
@@ -41,25 +41,13 @@ module.exports = function( grunt )
                       + " * (c) <%= grunt.template.today( 'yyyy' ) %> Vokal LLC\n"
                       + " * <%= pkg.homepage %>\n"
                       + " */\n",
-                sourceMap: false
+                sourceMap: false,
+                mangle: true,
+                compress: true 
             },
             min:
             {   
-                options:
-                {
-                    mangle: true,
-                    compress: true
-                },
-                files: { "dist/<%= pkg.name %>.min.js": [ "svg-radial.js" ] }
-            },
-            copy:
-            {   options:
-                {
-                    mangle: false,
-                    compress: false,
-                    beautify: true
-                },
-                files: { "dist/<%= pkg.name %>.js": [ "svg-radial.js" ] }
+                files: { "dist/<%= pkg.name %>.min.js": [ "source/<%= pkg.name %>.js" ] }
             }
         },
 

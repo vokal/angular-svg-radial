@@ -18,7 +18,7 @@ module.exports = function ( config )
             "bower/angular-mocks/angular-mocks.js",
             "bower/jquery/dist/jquery.js",
 
-            "svg-radial.js",
+            "source/angular-svg-radial.js",
 
             "tests/*.spec.js"
         ]
