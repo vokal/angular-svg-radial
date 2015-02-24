@@ -1,6 +1,6 @@
 /**
  * @license angular-svg-radial v0.1.0
- * (c) 2015 Vokal https://github.com/vokal/angular-svg-radial
+ * (c) 2015 Vokal LLC https://github.com/vokal/angular-svg-radial
  * License: MIT
  */
 angular.module( "svgRadial", [] )
