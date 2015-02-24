@@ -8,6 +8,12 @@ This is currently a work in progress. After creating this quickly on a project, 
 Roadmap
 ---
 
+_v0.x_
+
+- considered to be a WIP state
+- breaking changes may occur here
+- specify exact tag numbers when utilizing
+
 _v1_
 
 - use SVGs to create radial progress meters
@@ -31,3 +37,17 @@ _v2.0_
 
 - support for multiple values making up one radial
 - multiple layered radials?
+
+Usage
+---
+
+Only include files found in the `dist` or `less` directory. Changes to other files outside of these folders will not constitute breaking changes. A minified/uglified file has been provided in the `dist` folder.
+
+Development
+---
+
+When forking the repo and pulling the repo, run `npm install` and `bower install`.
+
+If submitting a pull request to this repo, we expect that styles are kept in par with the original standards of this repo. A `.jshintrc` file has been included and works directly with `grunt watch`.
+
+Karma & Jasmine are being utilized for testing and can be run with `grunt karma`. New functionality should be covered with tests, please include false checks and cases that force error handling where possible.
