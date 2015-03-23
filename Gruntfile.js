@@ -55,7 +55,8 @@ module.exports = function( grunt )
 
         uglify:
         {
-            options: {
+            options:
+            {
                 banner: "/*!\n"
                       + " * <%= pkg.name %> <%= pkg.version %>\n"
                       + " * (c) <%= grunt.template.today( 'yyyy' ) %> Vokal LLC\n"
