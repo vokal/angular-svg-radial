@@ -84,7 +84,8 @@ module.exports = function( grunt )
             },
             templates:
             {
-                files: "<%= ngtemplates.all.cwd %>/<%= ngtemplates.all.src %>",
+                options: { cwd: "<%= ngtemplates.all.cwd %>" },
+                files: "<%= ngtemplates.all.src %>",
                 tasks: [ "ngtemplates" ]
             }
         }
