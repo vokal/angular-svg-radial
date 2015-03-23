@@ -12,7 +12,7 @@ angular.module( "svgRadial", [] )
             restrict: "E",
             transclude: true,
             replace: true,
-            template: "templates/radialProgress.html",
+            templateUrl: "templates/radialProgress.html",
             link: function ( scope, element, attrs )
             {
                 var setRotation = function ( selector, numVal )
