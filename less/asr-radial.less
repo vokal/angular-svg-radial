@@ -1,0 +1,53 @@
+/**
+ * @license angular-svg-radial v0.2.0
+ * (c) 2015 Vokal LLC https://github.com/vokal/angular-svg-radial
+ * License: MIT
+ */
+
+@asr-base-color: #cccccc;
+@asr-base-stroke: 14px;
+
+@asr-radial-stroke: 20px;
+@asr-radial-color: blue;
+@asr-radial-transition-time: .5s;
+@asr-tt: @asr-radial-transition-time;
+
+@asr-transclude-padding: 5px;
+
+.asr-wrap {
+    position: relative;
+
+    .asr-svg {
+        position: absolute;
+        width: 100%;
+
+        & + [ ng-transclude ] {
+            position: absolute;
+            top: @asr-radial-stroke;
+            right: @asr-radial-stroke;
+            bottom: @asr-radial-stroke;
+            left: @asr-radial-stroke;
+            border: @asr-transclude-padding solid transparent;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    }
+    .asr-base, .asr-radial {
+        fill: transparent;
+    }
+    .asr-base {
+        stroke: @asr-base-color;
+        stroke-width: @asr-base-stroke;
+    }
+    .asr-radial {
+        stroke: @asr-radial-color;
+        stroke-width: @asr-radial-stroke;
+        transform-origin: 50% 50%;
+        
+        &.ready {
+            transition: stroke @asr-tt linear, stroke-dasharray @asr-tt ease, stroke-dashoffset @asr-tt ease;
+        }
+    }
+}
+
+
