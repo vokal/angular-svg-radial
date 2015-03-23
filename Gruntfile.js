@@ -16,7 +16,7 @@ module.exports = function( grunt )
             },
             all:
             {
-                src: [ "source/*.js", "Gruntfile.js" ]
+                src: [ "source/<%= pkg.name %>.js", "Gruntfile.js" ]
             }
         },
 
@@ -33,9 +33,30 @@ module.exports = function( grunt )
             }
         },
 
+        ngtemplates:
+        {
+            options:
+            {
+                module: "svgRadial",
+                htmlmin:
+                {
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: false,
+                    removeComments: true
+                }
+            },
+            all:
+            {
+                src: [ "templates/*.html" ],
+                dest: "source/templates.js",
+                cwd: "source"
+            }
+        },
+
         uglify:
         {
-            options: {
+            options:
+            {
                 banner: "/*!\n"
                       + " * <%= pkg.name %> <%= pkg.version %>\n"
                       + " * (c) <%= grunt.template.today( 'yyyy' ) %> Vokal LLC\n"
@@ -47,7 +68,10 @@ module.exports = function( grunt )
             },
             min:
             {   
-                files: { "dist/<%= pkg.name %>.min.js": [ "source/<%= pkg.name %>.js" ] }
+                files: { "dist/<%= pkg.name %>.min.js": [
+                    "source/<%= pkg.name %>.js",
+                    "<%= ngtemplates.all.dest %>"
+                ] }
             }
         },
 
@@ -58,12 +82,19 @@ module.exports = function( grunt )
             {
                 files: "<%= jshint.all.src %>",
                 tasks: [ "jshint" ]
+            },
+            templates:
+            {
+                options: { cwd: "<%= ngtemplates.all.cwd %>" },
+                files: "<%= ngtemplates.all.src %>",
+                tasks: [ "ngtemplates" ]
             }
         }
 
     } );
 
     // Load plugins
+    grunt.loadNpmTasks( "grunt-angular-templates" );
     grunt.loadNpmTasks( "grunt-contrib-jshint" );
     grunt.loadNpmTasks( "grunt-contrib-less" );
     grunt.loadNpmTasks( "grunt-contrib-uglify" );

@@ -12,18 +12,7 @@ angular.module( "svgRadial", [] )
             restrict: "E",
             transclude: true,
             replace: true,
-            // ignore double quotes HTML block for jshint
-            // to prevent unnecessary escaping
-            // jshint quotmark: false
-            template:   '<div class="radial-progress">' +
-                            '<div class="base"></div>' +
-                            '<div class="radial">' +
-                                '<div class="piece"></div>' +
-                                '<div class="piece"></div>' +
-                            '</div>' +
-                            '<div class="transclude" ng-transclude></div>' +
-                        '</div>',
-            // jshint quotmark: double
+            templateUrl: "templates/radialProgress.html",
             link: function ( scope, element, attrs )
             {
                 var setRotation = function ( selector, numVal )

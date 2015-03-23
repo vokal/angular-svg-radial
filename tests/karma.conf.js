@@ -19,6 +19,7 @@ module.exports = function ( config )
             "bower/jquery/dist/jquery.js",
 
             "source/angular-svg-radial.js",
+            "source/templates.js",
 
             "tests/*.spec.js"
         ]
