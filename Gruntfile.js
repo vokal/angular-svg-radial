@@ -16,7 +16,7 @@ module.exports = function( grunt )
             },
             all:
             {
-                src: [ "source/*.js", "Gruntfile.js" ]
+                src: [ "source/<%= pkg.name %>.js", "Gruntfile.js" ]
             }
         },
 
@@ -30,6 +30,26 @@ module.exports = function( grunt )
             all:
             {
                 files: { "dist/svg-radial.css": "less/svg-radial.less" }
+            }
+        },
+
+        ngtemplates:
+        {
+            options:
+            {
+                module: "svgRadial",
+                htmlmin:
+                {
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: false,
+                    removeComments: true
+                }
+            },
+            all:
+            {
+                src: [ "templates/*.html" ],
+                dest: "source/templates.js",
+                cwd: "source"
             }
         },
 
@@ -47,7 +67,10 @@ module.exports = function( grunt )
             },
             min:
             {   
-                files: { "dist/<%= pkg.name %>.min.js": [ "source/<%= pkg.name %>.js" ] }
+                files: { "dist/<%= pkg.name %>.min.js": [
+                    "source/<%= pkg.name %>.js",
+                    "<%= ngtemplates.all.dest %>"
+                ] }
             }
         },
 
@@ -58,12 +81,18 @@ module.exports = function( grunt )
             {
                 files: "<%= jshint.all.src %>",
                 tasks: [ "jshint" ]
+            },
+            templates:
+            {
+                files: "<%= ngtemplates.all.cwd %>/<%= ngtemplates.all.src %>",
+                tasks: [ "ngtemplates" ]
             }
         }
 
     } );
 
     // Load plugins
+    grunt.loadNpmTasks( "grunt-angular-templates" );
     grunt.loadNpmTasks( "grunt-contrib-jshint" );
     grunt.loadNpmTasks( "grunt-contrib-less" );
     grunt.loadNpmTasks( "grunt-contrib-uglify" );
