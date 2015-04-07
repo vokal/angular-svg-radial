@@ -1,7 +1,8 @@
-angular-svg-radial (WIP)
-===
+# angular-svg-radial (WIP)
 
 Angular directive that produces an SVG radial based on a percentage.
+
+> Maintained by @dmaloneycalu & @StoicJester
 
 This is currently a work in progress. After creating this quickly on a project, we decided that refactoring it to use SVGs would be a beneficial open source contribution.
 
