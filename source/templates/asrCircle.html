@@ -1,5 +1,6 @@
-<circle ng-attr-r="{{ r }}" ng-attr-cx="{{ c }}" ng-attr-cy="{{ c }}" 
-        ng-attr-stroke-dasharray="{{ circ() }}"
-        ng-attr-stroke-dashoffset="{{ offset() }}"
-        ng-attr-transform="rotate( -90, {{ c }}, {{ c }} )"
-        ng-class="{ finished: fin() }"/>
+<circle ng-attr-r="{{ r }}" ng-attr-cx="{{ c }}" ng-attr-cy="{{ c }}"
+        ng-attr-stroke-dasharray="{{ diam() }}"
+        ng-attr-stroke-dashoffset="{{ strokeOffset() }}"
+        ng-attr-transform="rotate( {{ transformOffset() }}, {{ c }}, {{ c }} )"
+        ng-class="{ 'negative': percent < 0 }"
+        ng-hide="percent == 0"/>

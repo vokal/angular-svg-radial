@@ -13,55 +13,69 @@ angular.module( "svgRadial", [] )
             transclude: true,
             templateUrl: "templates/asrRadial.html",
             scope: {
-                percent: "="
+                rotation: "&",
+                values: "="
             },
             controller: function ()
             {
-                this.strokes = [];
-                this.largerStroke = function ()
+                var ctrl = this;
+
+                ctrl.strokes = [];
+                ctrl.largestStroke = 0;
+
+                ctrl.addStroke = function ( val )
                 {
-                    var largest;
-                    this.strokes.forEach( function ( s )
+                    ctrl.strokes.push( val );
+                    if( val > ctrl.largestStroke )
                     {
-                        var int = Number( s.slice( 0, s.indexOf( "px" ) ) );
-                        if ( !largest || int > largest )
-                        {
-                            largest = int;
-                        }
-                    } );
-                    return largest;
+                        ctrl.largestStroke = val;
+                    }
                 };
             },
             link: function ( scope, elem, attrs, ctrl )
             {
+                if( !scope.values )
+                {
+                    return false;
+                }
+
                 var width = elem[ 0 ].offsetWidth;
+                scope.asr = {
+                    center: Math.floor( width / 2 ),
+                    fin: function ()
+                    {
+                        return scope.values.reduce( function ( prev, curr )
+                        {
+                            return prev + curr;
+                        }, 0 ) >= 100;
+                    },
+                    radius: function ()
+                    {
+                        return Math.max( scope.asr.center - Math.ceil( ctrl.largestStroke / 2 ), 0 );
+                    },
+                    style: { height: width + "px" }
+                };
+
                 scope.$watch( function ()
                 {
                     return elem[ 0 ].offsetWidth;
                 }, function ( newWidth )
                 {
                     width = newWidth;
+                    scope.asr.center = Math.floor( width / 2 );
+                    scope.asr.style.height = width + "px";
                 } );
 
-                scope.style = function ()
+                var cumulative = 0;
+                scope.asr.values = scope.values.map( function ( val )
                 {
-                    return {
-                        "height": width + "px"
+                    var radial = {
+                        percent: cumulative + val <= 100 ? val : 100 - cumulative,
+                        offset: cumulative
                     };
-                };
-                scope.c = function ()
-                {
-                    return Math.floor( width / 2 );
-                };
-                scope.r = function ()
-                {
-                    return minZero( scope.c() - Math.ceil( ctrl.largerStroke() / 2 ) );
-                };
-                
-                function minZero( v )
-                {
-                    return v >= 0 ? v : 0;   
-                }
+                    cumulative += radial.percent;
+                    return radial;
+                } );
             }
         };
     } ] )
@@ -78,23 +92,28 @@ angular.module( "svgRadial", [] )
             scope: {
                 c: "=",
                 r: "=rad",
-                p: "="
+                rotation: "=",
+                percent: "=",
+                offset: "="
             },
             link: function ( scope, elem, attrs, ctrl )
             {
-                ctrl.strokes.push( $window.getComputedStyle( elem[ 0 ] ).strokeWidth );
-                scope.circ = function ()
+                var strokeWidth = $window.getComputedStyle( elem[ 0 ] ).strokeWidth;
+                ctrl.addStroke(
+                    Number( strokeWidth.slice( 0, strokeWidth.indexOf( "px" ) ) )
+                );
+
+                scope.diam = function ()
                 {
                     return 2 * scope.r * Math.PI;
                 };
-                scope.offset = function ()
+                scope.transformOffset = function ()
                 {
-                    return !scope.p || scope.fin() ? 0 :
-                        scope.circ() - ( scope.p / 100 * scope.circ() );
+                    return scope.offset * 3.6 + ( scope.rotation || 0 );
                 };
-                scope.fin = function ()
+                scope.strokeOffset = function ()
                 {
-                    return scope.p && scope.p >= 100;
+                    return scope.percent >= 100 ? 0 : scope.diam() - ( scope.percent / 100 * scope.diam() );
                 };
 
                 $timeout( function()

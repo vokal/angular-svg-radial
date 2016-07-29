@@ -1,7 +1,15 @@
-<div class="asr-wrap" data-ng-style="style()"> 
-    <svg class="asr-svg" data-ng-style="style()">
-        <asr-circle c="c()" rad="r()" class="asr-base"></asr-circle>
-        <asr-circle c="c()" rad="r()" p="percent" class="asr-radial"></asr-circle>
+<div class="asr-wrap" ng-style="asr.style" ng-show="values.length">
+    <svg class="asr-svg" ng-style="asr.style" ng-class="{ finished: asr.fin() }">
+        <asr-circle c="asr.center" rad="asr.radius()" percent="100" offset="0" class="asr-base"></asr-circle>
+
+        <g>
+            <asr-circle class="asr-radial" ng-repeat="val in asr.values"
+                c="asr.center"
+                offset="val.offset"
+                percent="val.percent"
+                rad="asr.radius()"
+                rotation="rotation()"></asr-circle>
+        </g>
     </svg>
     <div ng-transclude></div>
 </div>
